@@ -1,5 +1,7 @@
 @use '../abstracts/index' as *;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
 html {
   box-sizing: border-box;
 }
@@ -17,4 +19,5 @@ body {
     $clr-secondary 0,
     $clr-primary 100%
   );
+  font-family: 'Montserrat', sans-serif;
 }
