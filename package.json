@@ -1,0 +1,22 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "Simple todo app made in html, typescrip and scss",
+  "main": "dist/app.js",
+  "scripts": {
+    "compile": "--tsc watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smajdor-mariusz/todo-list.git"
+  },
+  "keywords": [
+    "todo",
+    "list"
+  ],
+  "author": "Mariusz Smajdor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smajdor-mariusz/todo-list/issues"
+  }
+}
