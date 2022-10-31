@@ -1,0 +1,20 @@
+@use '../abstracts/index' as *;
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100vh;
+  background-image: radial-gradient(
+    circle,
+    $clr-secondary 0,
+    $clr-primary 100%
+  );
+}
