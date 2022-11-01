@@ -1,0 +1,9 @@
+@use '../abstracts/index' as *;
+
+.main-title {
+  margin: 0;
+  color: $clr-primary;
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 900;
+}
