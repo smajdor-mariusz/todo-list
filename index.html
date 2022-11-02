@@ -13,16 +13,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script type="module" src="dist/js/app.js"></script>
   </head>
   <body>
     <h1 class="main-title">Todo List</h1>
     <main class="container">
       <section class="lists">
         <h2 class="lists__title">My Lists</h2>
-        <ul class="lists__list">
-          <li class="lists__item">List One</li>
-          <li class="lists__item lists__item--active">List Two</li>
-        </ul>
+        <ul class="lists__list" data-lists></ul>
         <form class="lists__form">
           <input
             class="lists__input"
