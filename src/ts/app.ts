@@ -19,6 +19,8 @@ function addNewList() {
   const newListName: string = listInputEl.value;
   listInputEl.value = '';
 
+  if (newListName == null || newListName === '') return;
+
   lists = [
     ...lists,
     {
