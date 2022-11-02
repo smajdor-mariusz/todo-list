@@ -17,6 +17,7 @@ function addNewList() {
   const listInputEl: HTMLInputElement =
     document.querySelector('[data-list-input]');
   const newListName: string = listInputEl.value;
+  listInputEl.value = '';
 
   lists = [
     ...lists,
@@ -38,6 +39,7 @@ function addNewList() {
   listFormEl.addEventListener('submit', e => {
     e.preventDefault();
     addNewList();
+    listFormEl.focus();
   });
 
   renderLists();
