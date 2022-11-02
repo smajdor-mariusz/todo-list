@@ -16,6 +16,23 @@
   </head>
   <body>
     <h1 class="main-title">Todo List</h1>
-    <main class="container"></main>
+    <main class="container">
+      <section class="lists">
+        <h2 class="lists__title">My Lists</h2>
+        <ul class="lists__list">
+          <li class="lists__item">List One</li>
+          <li class="lists__item lists__item--active">List Two</li>
+        </ul>
+        <form class="lists__form">
+          <input
+            class="lists__input"
+            type="text"
+            placeholder="New List Name"
+            aria-label="New list name"
+          />
+          <button class="lists__submit" aria-label="Add new list">+</button>
+        </form>
+      </section>
+    </main>
   </body>
 </html>

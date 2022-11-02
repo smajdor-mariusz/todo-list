@@ -1,0 +1,60 @@
+@use '../abstracts/index' as *;
+
+.lists {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  color: $clr-light;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: inside;
+    list-style-type: circle;
+  }
+
+  &__item {
+    cursor: pointer;
+
+    &--active {
+      list-style-type: disc;
+      font-weight: bold;
+    }
+  }
+
+  &__form {
+    display: flex;
+    gap: $space-sm;
+  }
+
+  &__input {
+    border: unset;
+    border-bottom: 1px solid $clr-light;
+    padding: $space-xs 0;
+    background-color: transparent;
+    color: $clr-light;
+    outline: unset;
+    transition: box-shadow 0.3s ease;
+
+    &:focus {
+      box-shadow: 0 1px 0 0 $clr-light;
+    }
+
+    &::placeholder {
+      color: $clr-gray;
+    }
+  }
+
+  &__submit {
+    order: -1;
+    padding: 0;
+    border: unset;
+    background-color: transparent;
+    color: $clr-light;
+    font-weight: bold;
+  }
+}
