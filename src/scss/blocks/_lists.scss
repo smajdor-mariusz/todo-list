@@ -19,7 +19,7 @@
   }
 
   &__item {
-    animation: append 0.3s linear;
+    animation: append $transition;
     cursor: pointer;
 
     &--active {
@@ -40,7 +40,7 @@
     background-color: transparent;
     color: $clr-light;
     outline: unset;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow $transition;
 
     &:focus {
       box-shadow: 0 1px 0 0 $clr-light;
