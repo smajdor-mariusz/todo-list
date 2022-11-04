@@ -1,0 +1,121 @@
+@use '../abstracts/index' as *;
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  border-radius: $space-xs;
+  background-color: $clr-light;
+  box-shadow: $clr-dark 0px 5px 15px;
+  overflow: hidden;
+
+  &__header {
+    padding: $space-md;
+    background-color: $clr-gray;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    margin: 0;
+    padding: 0 $space-md;
+    list-style: none;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: $space-sm;
+    align-items: center;
+
+    &:hover .tasks__delete {
+      display: block;
+    }
+  }
+
+  &__content {
+    &--done {
+      text-decoration: line-through;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+    padding: 0;
+    border: unset;
+    border-radius: 50%;
+    background-color: $clr-primary;
+    color: $clr-light;
+    font-size: $font-xs;
+    transition: filter $transition;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+
+    &:active {
+      filter: brightness(120%);
+    }
+  }
+
+  &__delete {
+    display: none;
+    border: unset;
+    background-color: transparent;
+    color: $clr-warning;
+    font-size: $font-sm;
+
+    transition: filter $transition;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+
+    &:active {
+      filter: brightness(80%);
+    }
+  }
+
+  &__form {
+    display: flex;
+    gap: $space-sm;
+    padding: 0 $space-md $space-md;
+  }
+
+  &__input {
+    border: unset;
+    border-bottom: 1px solid $clr-dark;
+    padding: $space-xs 0;
+    background-color: transparent;
+    color: $clr-dark;
+    outline: unset;
+    transition: box-shadow $transition;
+
+    &:focus {
+      box-shadow: 0 1px 0 0 $clr-dark;
+    }
+
+    &::placeholder {
+      color: $clr-gray;
+    }
+  }
+
+  &__submit {
+    order: -1;
+    padding: 0;
+    border: unset;
+    background-color: transparent;
+    color: $clr-dark;
+    font-weight: bold;
+    transition: filter $transition;
+  }
+}
