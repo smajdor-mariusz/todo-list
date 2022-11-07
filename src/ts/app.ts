@@ -1,16 +1,34 @@
 import { List } from './types';
-import { createListEl } from './utils/dom-utils.js';
 
-export let lists: List[] = [];
+const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
+
+let lists: List[] = [];
+let activeListId: string = null;
+
+listsEl.addEventListener('click', (e: Event) => {
+  const listItemEl = e.target as HTMLLIElement;
+  if (listItemEl.tagName.toLowerCase() === 'li') {
+    activeListId = listItemEl.dataset.listId;
+  }
+
+  renderLists();
+});
 
 function renderLists() {
-  const listsEl = document.querySelector('[data-lists]');
+  listsEl.innerHTML = '';
+  lists.forEach((list: List) => listsEl.appendChild(createListEl(list)));
+}
 
-  lists.forEach(list => {
-    if (list.rendered) return;
-    list.rendered = true;
-    listsEl.appendChild(createListEl(list.name));
-  });
+function createListEl(list: List) {
+  const listEl: HTMLLIElement = document.createElement('li');
+  listEl.classList.add('lists__item');
+  listEl.dataset.listId = list.id;
+  if (list.id === activeListId) {
+    listEl.classList.add('lists__item--active');
+  }
+  listEl.innerText = list.name;
+
+  return listEl;
 }
 
 function addNewList() {
@@ -27,7 +45,6 @@ function addNewList() {
       id: Date.now().toString(),
       name: newListName,
       tasks: [],
-      rendered: false,
     },
   ];
 

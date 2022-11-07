@@ -1,5 +1,4 @@
 @use '../abstracts/index' as *;
-@use '../utils/animations' as *;
 
 .lists {
   display: flex;
@@ -19,7 +18,6 @@
   }
 
   &__item {
-    animation: append $transition;
     cursor: pointer;
 
     &--active {
