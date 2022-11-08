@@ -34,11 +34,11 @@ function addNewList() {
   const listFormEl: HTMLFormElement =
     document.querySelector('[data-list-form]');
 
-  renderLists(listsEl, lists, activeListId);
-
   listFormEl.addEventListener('submit', (e: SubmitEvent) => {
     e.preventDefault();
     addNewList();
     listFormEl.focus();
   });
+
+  renderLists(listsEl, lists, activeListId);
 })();
