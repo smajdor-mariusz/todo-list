@@ -1,5 +1,5 @@
-import { getInputValue } from './helpers/bind-input.helpers.js';
 import { List } from './types';
+import { getInputValue } from './utils/getInputValue.js';
 
 const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
 
@@ -33,7 +33,7 @@ function createListEl(list: List) {
 }
 
 function addNewList() {
-  const listName = getInputValue();
+  const listName = getInputValue('[data-list-input]');
   lists = [
     ...lists,
     {
@@ -42,7 +42,6 @@ function addNewList() {
       tasks: [],
     },
   ];
-
   renderLists();
 }
 
