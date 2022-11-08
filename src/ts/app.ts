@@ -1,5 +1,6 @@
 import { List } from './types';
 import { getInputValue } from './utils/getInputValue.js';
+import { createListEl } from './helpers/dom-helpers.js';
 
 const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
 
@@ -17,19 +18,9 @@ listsEl.addEventListener('click', (e: Event) => {
 
 function renderLists() {
   listsEl.innerHTML = '';
-  lists.forEach((list: List) => listsEl.appendChild(createListEl(list)));
-}
-
-function createListEl(list: List) {
-  const listEl: HTMLLIElement = document.createElement('li');
-  listEl.classList.add('lists__item');
-  listEl.dataset.listId = list.id;
-  if (list.id === activeListId) {
-    listEl.classList.add('lists__item--active');
-  }
-  listEl.innerText = list.name;
-
-  return listEl;
+  lists.forEach((list: List) =>
+    listsEl.appendChild(createListEl(list, activeListId))
+  );
 }
 
 function addNewList() {
