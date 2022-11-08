@@ -25,6 +25,7 @@ function renderLists() {
 
 function addNewList() {
   const listName = getInputValue('[data-list-input]');
+  if (!listName) return;
   lists = [
     ...lists,
     {

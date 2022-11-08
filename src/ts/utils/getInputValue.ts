@@ -3,6 +3,5 @@ export function getInputValue(selector: string) {
   const inputValue: string = inputEl.value;
   inputEl.value = '';
 
-  if (inputValue == null || inputValue === '') return;
-  return inputValue;
+  return inputValue.trim();
 }
