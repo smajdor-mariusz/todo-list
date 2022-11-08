@@ -1,3 +1,4 @@
+import { getInputValue } from './helpers/bind-input.helpers.js';
 import { List } from './types';
 
 const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
@@ -32,18 +33,12 @@ function createListEl(list: List) {
 }
 
 function addNewList() {
-  const listInputEl: HTMLInputElement =
-    document.querySelector('[data-list-input]');
-  const newListName: string = listInputEl.value;
-  listInputEl.value = '';
-
-  if (newListName == null || newListName === '') return;
-
+  const listName = getInputValue();
   lists = [
     ...lists,
     {
       id: Date.now().toString(),
-      name: newListName,
+      name: listName,
       tasks: [],
     },
   ];
@@ -55,11 +50,9 @@ function addNewList() {
   const listFormEl: HTMLFormElement =
     document.querySelector('[data-list-form]');
 
-  listFormEl.addEventListener('submit', e => {
+  listFormEl.addEventListener('submit', (e: SubmitEvent) => {
     e.preventDefault();
     addNewList();
     listFormEl.focus();
   });
-
-  renderLists();
 })();
