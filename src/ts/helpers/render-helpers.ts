@@ -1,6 +1,5 @@
 import { List } from '../types';
-import { createListEl } from './dom-helpers.js';
-import { createTaskEl } from './dom-helpers.js';
+import { createListEl, createTaskEl } from './dom-helpers.js';
 
 export function renderLists(
   listsEl: HTMLUListElement,
