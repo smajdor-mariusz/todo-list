@@ -14,9 +14,11 @@ export function renderLists(
 }
 
 export function renderTasks(lists: List[], activeListId: string) {
-  const tasksEl = document.querySelector('[data-tasks]');
+  if (activeListId) {
+    const tasksEl = document.querySelector('[data-tasks]');
 
-  const tasks = lists.find(list => list.id === activeListId).tasks;
-  tasksEl.innerHTML = '';
-  tasks.forEach(task => tasksEl.appendChild(createTaskEl(task)));
+    const tasks = lists.find(list => list.id === activeListId).tasks;
+    tasksEl.innerHTML = '';
+    tasks.forEach(task => tasksEl.appendChild(createTaskEl(task)));
+  }
 }
