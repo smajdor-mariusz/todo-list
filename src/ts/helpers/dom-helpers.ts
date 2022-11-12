@@ -19,6 +19,7 @@ export function createTaskEl(task: Task) {
   const toggleButtonEl: HTMLButtonElement = document.createElement('button');
   toggleButtonEl.type = 'button';
   toggleButtonEl.classList.add('tasks__toggle');
+  toggleButtonEl.setAttribute('data-toggle-button', '');
 
   const iconEl = document.createElement('i');
   iconEl.classList.add('fa-solid', 'fa-check');

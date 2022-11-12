@@ -32,9 +32,9 @@ function addNewList() {
 
 function addNewTask() {
   const taskName = getInputValue('[data-task-input]');
+  if (!taskName) return;
   const activeList = lists.find(list => list.id === activeListId);
   const activeListIndex = lists.findIndex(list => list.id === activeListId);
-  if (!taskName) return;
 
   let newTasks: Task[] = [
     ...activeList?.tasks,
