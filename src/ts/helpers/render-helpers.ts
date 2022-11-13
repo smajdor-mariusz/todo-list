@@ -11,6 +11,12 @@ export function renderLists(
   lists.forEach((list: List) =>
     listsEl.appendChild(createListEl(list, activeListId))
   );
+  if (activeListId) {
+    const tasksTitleEl: HTMLHeadElement =
+      document.querySelector('[data-tasks-title]');
+    tasksTitleEl.innerText =
+      lists.find(list => list.id === activeListId).name || '';
+  }
   renderTasks(lists, activeListId);
 }
 
