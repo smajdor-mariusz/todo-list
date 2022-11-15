@@ -9,6 +9,9 @@ export function createListItemEl(
   listItemEl.classList.add('lists__item');
   listItemEl.innerText = list.name;
   listItemEl.addEventListener('click', () => {
+    const tasksTitleEl: HTMLHeadElement =
+      document.querySelector('[data-tasks-title]');
+    tasksTitleEl.innerText = list.name;
     const activeLIClass = 'lists__item--active';
     const activeEl: HTMLLIElement = document.querySelector(`.${activeLIClass}`);
     if (activeEl) activeEl.classList.remove(activeLIClass);
