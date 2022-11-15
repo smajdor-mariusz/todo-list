@@ -10,6 +10,10 @@
   color: $clr-dark;
   overflow: hidden;
 
+  &--hidden {
+    display: none;
+  }
+
   &__header {
     padding: $space-md;
     background-color: $clr-gray;

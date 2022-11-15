@@ -1,4 +1,4 @@
-import { List } from './types.js';
+import { List } from './types';
 import { createNewItem } from './utils/createNewItem.js';
 import { renderList } from './helpers/render.helpers.js';
 
@@ -19,6 +19,8 @@ function init() {
     event.preventDefault();
     addNewList();
   });
+
+  renderList(lists, activeListId);
 }
 
 init();
