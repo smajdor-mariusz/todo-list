@@ -12,6 +12,6 @@ export function renderList(lists: List[], activeListId: string) {
   lists.forEach((list: List) => {
     if (list.rendered) return;
     list.rendered = true;
-    listEl.appendChild(createListItemEl(list, activeListId, tasksContainerEl));
+    listEl.appendChild(createListItemEl(list));
   });
 }

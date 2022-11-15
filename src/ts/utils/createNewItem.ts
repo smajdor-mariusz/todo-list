@@ -5,11 +5,5 @@ export function createNewItem(selector: string) {
   inputEl.focus();
   inputEl.value = '';
 
-  return {
-    id: Date.now().toString(),
-    name: value,
-    active: false,
-    rendered: false,
-    tasks: [],
-  };
+  return value;
 }
