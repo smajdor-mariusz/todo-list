@@ -1,8 +1,11 @@
-import { List } from '../types';
-import { createListItemEl } from './create-elements.helpers.js';
+import { List, Task } from '../types';
+import {
+  createListItemEl,
+  createTaskItemEl,
+} from './create-elements.helpers.js';
 
 export function renderList(lists: List[], activeListId: string) {
-  const listEl: HTMLUListElement = document.querySelector('[data-lists]');
+  const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
 
   const tasksContainerEl: HTMLDivElement = document.querySelector(
     '[data-tasks-container]'
@@ -12,6 +15,16 @@ export function renderList(lists: List[], activeListId: string) {
   lists.forEach((list: List) => {
     if (list.rendered) return;
     list.rendered = true;
-    listEl.appendChild(createListItemEl(list));
+    listsEl.appendChild(createListItemEl(list));
+  });
+}
+
+export function renderTask(tasks: Task[]) {
+  const tasksEl: HTMLUListElement = document.querySelector('[data-tasks]');
+
+  tasks.forEach((task: Task) => {
+    if (task.rendered) return;
+    task.rendered = true;
+    tasksEl.appendChild(createTaskItemEl(task));
   });
 }
