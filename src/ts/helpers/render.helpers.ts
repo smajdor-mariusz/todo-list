@@ -6,16 +6,16 @@ import {
 import { setTasksBlock } from './set-tasks-block.helper.js';
 
 export function render(lists: List[], activeListId: string) {
-  renderList(lists);
+  renderList(lists, activeListId);
   activeListId && renderTask(lists, activeListId);
 }
 
-function renderList(lists: List[]) {
+function renderList(lists: List[], activeListId: string) {
   const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
   listsEl.innerHTML = null;
 
   lists.forEach((list: List) => {
-    listsEl.appendChild(createListItemEl(list));
+    listsEl.appendChild(createListItemEl(list, activeListId));
   });
 }
 

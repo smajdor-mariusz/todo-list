@@ -1,10 +1,11 @@
 import { List, Task } from '../types';
 
-export function createListItemEl(list: List) {
+export function createListItemEl(list: List, activeListId: string) {
   const listItemEl: HTMLLIElement = document.createElement('li');
-  listItemEl.classList.add('lists__item');
-  listItemEl.innerText = list.name;
   listItemEl.setAttribute('data-list-item', list.id);
+  listItemEl.classList.add('lists__item');
+  list.id === activeListId && listItemEl.classList.add('lists__item--active');
+  listItemEl.innerText = list.name;
 
   return listItemEl;
 }
