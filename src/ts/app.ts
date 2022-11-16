@@ -9,14 +9,11 @@ let activeListId: string = null;
 function addNewList() {
   const newListName: string = createNewItem('[data-list-input]');
   if (!newListName) return;
-  lists = [
-    ...lists,
-    {
-      id: Date.now().toString(),
-      name: newListName,
-      tasks: [],
-    },
-  ];
+  lists.push({
+    id: Date.now().toString(),
+    name: newListName,
+    tasks: [],
+  });
   render(lists, activeListId);
 }
 
@@ -24,27 +21,15 @@ function addNewTask() {
   const newTaskName: string = createNewItem('[data-task-input]');
   if (!newTaskName) return;
   const activeList = lists.find(list => list.id === activeListId);
-  const activeListIndex = lists.findIndex(list => list.id === activeListId);
-  lists = [
-    ...lists.slice(0, activeListIndex),
-    {
-      ...activeList,
-      tasks: [
-        ...activeList.tasks,
-        {
-          name: newTaskName,
-          done: false,
-        },
-      ],
-      ...lists.slice(activeListIndex + 1),
-    },
-  ];
+  activeList.tasks.push({
+    name: newTaskName,
+    done: false,
+  });
   render(lists, activeListId);
 }
 
 function init() {
   const listEl: HTMLUListElement = document.querySelector('[data-lists]');
-
   listEl.addEventListener('click', (event: Event) => {
     const targetEl = event.target as HTMLLIElement;
     activeListId = targetEl.getAttribute('data-list-item');
@@ -53,7 +38,6 @@ function init() {
 
   bindForm('list', addNewList);
   bindForm('task', addNewTask);
-
   render(lists, activeListId);
 }
 
