@@ -13,6 +13,7 @@ export function render(lists: List[], activeListId: string) {
 function renderList(lists: List[]) {
   const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
   listsEl.innerHTML = null;
+
   lists.forEach((list: List) => {
     listsEl.appendChild(createListItemEl(list));
   });
@@ -20,8 +21,9 @@ function renderList(lists: List[]) {
 
 function renderTask(lists: List[], activeListId: string) {
   const tasksEl: HTMLUListElement = document.querySelector('[data-tasks]');
-  const activeList: List = lists.find(list => list.id === activeListId);
+  tasksEl.innerHTML = null;
 
+  const activeList: List = lists.find(list => list.id === activeListId);
   activeList.tasks.forEach((task: Task) =>
     tasksEl.appendChild(createTaskItemEl(task))
   );
