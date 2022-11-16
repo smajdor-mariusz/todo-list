@@ -1,34 +1,10 @@
 import { List } from './types';
-import { renderList, renderTask } from './helpers/render.helpers.js';
+import { render } from './helpers/render.helpers.js';
 import { createNewItem } from './utils/createNewItem.js';
 import { bindForm } from './utils/bindForm.js';
 
-const listEl: HTMLUListElement = document.querySelector('[data-lists]');
-
 let lists: List[] = [];
 let activeListId: string = null;
-
-function bindListItemEvent() {
-  listEl.addEventListener('click', (event: Event) => {
-    const activeLIClass = 'lists__item--active';
-    const activeEl: HTMLLIElement = document.querySelector(`.${activeLIClass}`);
-    if (activeEl) activeEl.classList.remove(activeLIClass);
-
-    const listItemEl = event.target as HTMLLIElement;
-    listItemEl.classList.add(activeLIClass);
-
-    activeListId = listItemEl.getAttribute('data-list-item');
-
-    const tasksTitleEl: HTMLHeadElement =
-      document.querySelector('[data-tasks-title]');
-    tasksTitleEl.innerText = lists.find(list => list.id === activeListId).name;
-
-    const tasksContainerEl: HTMLDivElement = document.querySelector(
-      '[data-tasks-container]'
-    );
-    tasksContainerEl.classList.remove('tasks--hidden');
-  });
-}
 
 function addNewList() {
   const newListName: string = createNewItem('[data-list-input]');
@@ -38,12 +14,10 @@ function addNewList() {
     {
       id: Date.now().toString(),
       name: newListName,
-      active: false,
-      rendered: false,
       tasks: [],
     },
   ];
-  renderList(lists, activeListId);
+  render(lists, activeListId);
 }
 
 function addNewTask() {
@@ -60,22 +34,37 @@ function addNewTask() {
         {
           name: newTaskName,
           done: false,
-          rendered: false,
         },
       ],
       ...lists.slice(activeListIndex + 1),
     },
   ];
-  renderTask(activeList.tasks);
+  render(lists, activeListId);
 }
 
 function init() {
-  bindListItemEvent();
+  const listEl: HTMLUListElement = document.querySelector('[data-lists]');
+
+  listEl.addEventListener('click', (event: Event) => {
+    const targetEl = event.target as HTMLLIElement;
+    activeListId = targetEl.getAttribute('data-list-item');
+
+    const tasksContainerEl: HTMLDivElement = document.querySelector(
+      '[data-tasks-container]'
+    );
+    tasksContainerEl.classList.remove('tasks--hidden');
+
+    const tasksTitleEl: HTMLHeadElement =
+      document.querySelector('[data-tasks-title]');
+    tasksTitleEl.innerText = lists.find(list => list.id === activeListId).name;
+
+    render(lists, activeListId);
+  });
 
   bindForm('list', addNewList);
   bindForm('task', addNewTask);
 
-  renderList(lists, activeListId);
+  render(lists, activeListId);
 }
 
 init();
