@@ -48,16 +48,6 @@ function init() {
   listEl.addEventListener('click', (event: Event) => {
     const targetEl = event.target as HTMLLIElement;
     activeListId = targetEl.getAttribute('data-list-item');
-
-    const tasksContainerEl: HTMLDivElement = document.querySelector(
-      '[data-tasks-container]'
-    );
-    tasksContainerEl.classList.remove('tasks--hidden');
-
-    const tasksTitleEl: HTMLHeadElement =
-      document.querySelector('[data-tasks-title]');
-    tasksTitleEl.innerText = lists.find(list => list.id === activeListId).name;
-
     render(lists, activeListId);
   });
 

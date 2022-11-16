@@ -3,32 +3,27 @@ import {
   createListItemEl,
   createTaskItemEl,
 } from './create-elements.helpers.js';
+import { setTasksBlock } from './set-tasks-block.helper.js';
 
 export function render(lists: List[], activeListId: string) {
-  const activeList = lists.find(list => list.id === activeListId);
-
-  renderList(lists, activeListId);
-  activeList && renderTask(activeList.tasks);
+  renderList(lists);
+  activeListId && renderTask(lists, activeListId);
 }
 
-function renderList(lists: List[], activeListId: string) {
+function renderList(lists: List[]) {
   const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
-
   listsEl.innerHTML = null;
-  const tasksContainerEl: HTMLDivElement = document.querySelector(
-    '[data-tasks-container]'
-  );
-  if (!activeListId) tasksContainerEl.classList.add('tasks--hidden');
-
   lists.forEach((list: List) => {
     listsEl.appendChild(createListItemEl(list));
   });
 }
 
-function renderTask(tasks: Task[]) {
+function renderTask(lists: List[], activeListId: string) {
   const tasksEl: HTMLUListElement = document.querySelector('[data-tasks]');
+  const activeList: List = lists.find(list => list.id === activeListId);
 
-  tasks.forEach((task: Task) => {
-    tasksEl.appendChild(createTaskItemEl(task));
-  });
+  activeList.tasks.forEach((task: Task) =>
+    tasksEl.appendChild(createTaskItemEl(task))
+  );
+  setTasksBlock(activeList.name);
 }
