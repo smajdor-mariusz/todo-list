@@ -10,7 +10,7 @@ export function createListItemEl(list: List, activeListId: string) {
   return listItemEl;
 }
 
-export function createTaskItemEl(task: Task, index: number) {
+export function createTaskItemEl(task: Task) {
   const taskItemEl: HTMLLIElement = document.createElement('li');
   taskItemEl.classList.add('tasks__item');
 

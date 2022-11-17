@@ -32,9 +32,7 @@ function renderTask(
   tasksEl.innerHTML = null;
 
   const activeList: List = lists.find(list => list.id === activeListId);
-  activeList.tasks.forEach((task, index) =>
-    tasksEl.appendChild(createTaskItemEl(task, index))
-  );
+  activeList.tasks.forEach(task => tasksEl.appendChild(createTaskItemEl(task)));
   setTasksBlock(activeList.name);
   bindToggleButtons();
 }
