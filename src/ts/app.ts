@@ -14,7 +14,7 @@ function addNewList() {
     name: newListName,
     tasks: [],
   });
-  render(lists, activeListId);
+  render(lists, activeListId, bindToggleButtons);
 }
 
 function addNewTask() {
@@ -25,20 +25,35 @@ function addNewTask() {
     name: newTaskName,
     done: false,
   });
-  render(lists, activeListId);
+  render(lists, activeListId, bindToggleButtons);
+}
+
+function toggleTaskDone(index: string) {
+  const activeList = lists.find(list => list.id === activeListId);
+  activeList.tasks[index].done = !activeList.tasks[index].done;
+  render(lists, activeListId, bindToggleButtons);
+}
+
+function bindToggleButtons() {
+  const toggleButtonEls = document.querySelectorAll('[data-toggle]');
+  toggleButtonEls.forEach((button: HTMLButtonElement, index: number) => {
+    button.addEventListener('click', () => {
+      toggleTaskDone(index.toString());
+    });
+  });
 }
 
 function init() {
-  const listEl: HTMLUListElement = document.querySelector('[data-lists]');
-  listEl.addEventListener('click', (event: Event) => {
+  const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
+  listsEl.addEventListener('click', (event: Event) => {
     const targetEl = event.target as HTMLLIElement;
     activeListId = targetEl.getAttribute('data-list-item');
-    render(lists, activeListId);
+    render(lists, activeListId, bindToggleButtons);
   });
 
   bindForm('list', addNewList);
   bindForm('task', addNewTask);
-  render(lists, activeListId);
+  render(lists, activeListId, bindToggleButtons);
 }
 
 init();

@@ -10,13 +10,14 @@ export function createListItemEl(list: List, activeListId: string) {
   return listItemEl;
 }
 
-export function createTaskItemEl(task: Task) {
+export function createTaskItemEl(task: Task, index: number) {
   const taskItemEl: HTMLLIElement = document.createElement('li');
   taskItemEl.classList.add('tasks__item');
 
   const taskToggleBtnEl: HTMLButtonElement = document.createElement('button');
   taskToggleBtnEl.classList.add('tasks__toggle');
   taskToggleBtnEl.type = 'button';
+  taskToggleBtnEl.setAttribute('data-toggle', '');
 
   const iconEl: HTMLElement = document.createElement('i');
   iconEl.classList.add('fa-solid');
@@ -31,6 +32,7 @@ export function createTaskItemEl(task: Task) {
   taskDeleteBtnEl.classList.add('tasks__delete');
   taskDeleteBtnEl.type = 'button';
   taskDeleteBtnEl.innerText = 'Delete';
+  taskDeleteBtnEl.setAttribute('data-delete', '');
 
   taskItemEl.appendChild(taskToggleBtnEl);
   taskItemEl.appendChild(taskContentEl);
