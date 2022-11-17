@@ -14,7 +14,7 @@ function addNewList() {
     name: newListName,
     tasks: [],
   });
-  render(lists, activeListId, bindToggleButtons);
+  render(lists, activeListId, bindTaskButtons);
 }
 
 function addNewTask() {
@@ -25,13 +25,19 @@ function addNewTask() {
     name: newTaskName,
     done: false,
   });
-  render(lists, activeListId, bindToggleButtons);
+  render(lists, activeListId, bindTaskButtons);
 }
 
 function toggleTaskDone(index: string) {
   const activeList = lists.find(list => list.id === activeListId);
   activeList.tasks[index].done = !activeList.tasks[index].done;
-  render(lists, activeListId, bindToggleButtons);
+  render(lists, activeListId, bindTaskButtons);
+}
+
+function deleteTask(index: number) {
+  const activeList = lists.find(list => list.id === activeListId);
+  activeList.tasks.splice(index, 1);
+  render(lists, activeListId, bindTaskButtons);
 }
 
 function bindToggleButtons() {
@@ -43,17 +49,31 @@ function bindToggleButtons() {
   });
 }
 
+function bindDeleteButtons() {
+  const deleteButtonsEls = document.querySelectorAll('[data-delete]');
+  deleteButtonsEls.forEach((button: HTMLButtonElement, index: number) => {
+    button.addEventListener('click', () => {
+      deleteTask(index);
+    });
+  });
+}
+
+function bindTaskButtons() {
+  bindToggleButtons();
+  bindDeleteButtons();
+}
+
 function init() {
   const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
   listsEl.addEventListener('click', (event: Event) => {
     const targetEl = event.target as HTMLLIElement;
     activeListId = targetEl.getAttribute('data-list-item');
-    render(lists, activeListId, bindToggleButtons);
+    render(lists, activeListId, bindTaskButtons);
   });
 
   bindForm('list', addNewList);
   bindForm('task', addNewTask);
-  render(lists, activeListId, bindToggleButtons);
+  render(lists, activeListId, bindTaskButtons);
 }
 
 init();
