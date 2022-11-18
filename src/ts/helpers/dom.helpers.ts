@@ -41,12 +41,28 @@ export function createTaskItemEl(task: Task) {
   return taskItemEl;
 }
 
-export function setTasksBlock(activeListName: string) {
+export function setTasksBlock(activeList: List) {
+  setTasksContainer(activeList);
+  setTasksInfo(activeList);
+}
+
+function setTasksContainer(activeList: List) {
   const tasksContainerEl: HTMLDivElement = document.querySelector(
     '[data-tasks-container]'
   );
   tasksContainerEl.classList.remove('tasks--hidden');
   const tasksTitleEl: HTMLHeadElement =
     document.querySelector('[data-tasks-title]');
-  tasksTitleEl.innerText = activeListName;
+  tasksTitleEl.innerText = activeList.name;
+}
+
+function setTasksInfo(activeList: List) {
+  const tasksInfoEl: HTMLSpanElement =
+    document.querySelector('[data-tasks-info]');
+  const remainingTasksCount = activeList.tasks.filter(
+    task => !task.done
+  ).length;
+  tasksInfoEl.innerText = `${remainingTasksCount} task${
+    remainingTasksCount !== 1 ? 's' : ''
+  } remaining`;
 }

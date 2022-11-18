@@ -15,12 +15,20 @@
   }
 
   &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: $space-md;
     background-color: $clr-gray;
   }
 
   &__title {
     margin: 0;
+  }
+
+  &__info {
+    font-size: $font-sm;
+    font-weight: bold;
   }
 
   &__list {
