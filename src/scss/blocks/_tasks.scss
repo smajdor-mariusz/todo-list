@@ -4,14 +4,20 @@
   display: flex;
   flex-direction: column;
   gap: $space-md;
-  border-radius: $space-xs;
-  background-color: $clr-light;
-  box-shadow: $clr-dark 0px 5px 15px;
-  color: $clr-dark;
-  overflow: hidden;
 
   &--hidden {
     display: none;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    border-radius: $space-xs;
+    background-color: $clr-light;
+    box-shadow: $clr-dark 0px 5px 15px;
+    color: $clr-dark;
+    overflow: hidden;
   }
 
   &__header {
@@ -130,5 +136,27 @@
     color: $clr-dark;
     font-weight: bold;
     transition: filter $transition;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__button {
+    border: unset;
+    background: unset;
+    color: $clr-light;
+    font-size: $font-sm;
+    transition: filter $transition;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+
+    &:active {
+      filter: brightness(120%);
+    }
   }
 }

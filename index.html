@@ -37,21 +37,31 @@
         </form>
       </section>
       <section class="tasks tasks--hidden" data-tasks-container>
-        <header class="tasks__header">
-          <h2 class="tasks__title" data-tasks-title></h2>
-          <span class="tasks__info" data-tasks-info></span>
-        </header>
-        <ul class="tasks__list" data-tasks></ul>
-        <form class="tasks__form" data-task-form>
-          <input
-            type="text"
-            class="tasks__input"
-            placeholder="New Task Name"
-            aria-label="New task name"
-            data-task-input
-          />
-          <button aria-label="Add new task" class="tasks__submit">+</button>
-        </form>
+        <div class="tasks__container">
+          <header class="tasks__header">
+            <h2 class="tasks__title" data-tasks-title></h2>
+            <span class="tasks__info" data-tasks-info></span>
+          </header>
+          <ul class="tasks__list" data-tasks></ul>
+          <form class="tasks__form" data-task-form>
+            <input
+              type="text"
+              class="tasks__input"
+              placeholder="New Task Name"
+              aria-label="New task name"
+              data-task-input
+            />
+            <button aria-label="Add new task" class="tasks__submit">+</button>
+          </form>
+        </div>
+        <div class="tasks__buttons">
+          <button type="button" class="tasks__button" data-clear-completed>
+            Clear Completed Tasks
+          </button>
+          <button type="button" class="tasks__button" data-delete-list>
+            Delete List
+          </button>
+        </div>
       </section>
     </main>
   </body>
