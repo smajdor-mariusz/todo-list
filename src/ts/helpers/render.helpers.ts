@@ -2,9 +2,9 @@ import { List } from '../types';
 import {
   createListItemEl,
   createTaskItemEl,
-} from './create-elements.helpers.js';
+  setTasksBlock,
+} from './dom.helpers.js';
 import { saveInLocalStorage } from './local-storage.helper.js';
-import { setTasksBlock } from './set-tasks-block.helper.js';
 
 export function saveAndRender(
   lists: List[],
