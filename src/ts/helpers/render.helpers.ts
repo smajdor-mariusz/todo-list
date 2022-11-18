@@ -3,9 +3,19 @@ import {
   createListItemEl,
   createTaskItemEl,
 } from './create-elements.helpers.js';
+import { saveInLocalStorage } from './local-storage.helper.js';
 import { setTasksBlock } from './set-tasks-block.helper.js';
 
-export function render(
+export function saveAndRender(
+  lists: List[],
+  activeListId: string,
+  bindToggleButtons: Function
+) {
+  render(lists, activeListId, bindToggleButtons);
+  saveInLocalStorage(lists, activeListId);
+}
+
+function render(
   lists: List[],
   activeListId: string,
   bindToggleButtons: Function

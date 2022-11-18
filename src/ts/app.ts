@@ -1,10 +1,11 @@
 import { List } from './types';
-import { render } from './helpers/render.helpers.js';
+import { saveAndRender } from './helpers/render.helpers.js';
 import { createNewItem } from './utils/createNewItem.js';
 import { bindForm } from './utils/bindForm.js';
+import { ACTIVE_LIST_KEY, LISTS_KEY } from './helpers/local-storage.helper.js';
 
-let lists: List[] = [];
-let activeListId: string = null;
+let lists: List[] = JSON.parse(localStorage.getItem(LISTS_KEY)) || [];
+let activeListId: string = JSON.parse(localStorage.getItem(ACTIVE_LIST_KEY));
 
 function addNewList() {
   const newListName: string = createNewItem('[data-list-input]');
@@ -14,7 +15,7 @@ function addNewList() {
     name: newListName,
     tasks: [],
   });
-  render(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskButtons);
 }
 
 function addNewTask() {
@@ -25,19 +26,19 @@ function addNewTask() {
     name: newTaskName,
     done: false,
   });
-  render(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskButtons);
 }
 
 function toggleTaskDone(index: string) {
   const activeList = lists.find(list => list.id === activeListId);
   activeList.tasks[index].done = !activeList.tasks[index].done;
-  render(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskButtons);
 }
 
 function deleteTask(index: number) {
   const activeList = lists.find(list => list.id === activeListId);
   activeList.tasks.splice(index, 1);
-  render(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskButtons);
 }
 
 function bindToggleButtons() {
@@ -68,12 +69,12 @@ function init() {
   listsEl.addEventListener('click', (event: Event) => {
     const targetEl = event.target as HTMLLIElement;
     activeListId = targetEl.getAttribute('data-list-item');
-    render(lists, activeListId, bindTaskButtons);
+    saveAndRender(lists, activeListId, bindTaskButtons);
   });
 
   bindForm('list', addNewList);
   bindForm('task', addNewTask);
-  render(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskButtons);
 }
 
 init();
