@@ -41,6 +41,14 @@ function deleteTask(index: number) {
   saveAndRender(lists, activeListId, bindTaskButtons);
 }
 
+function clearCompletedTasks() {
+  const activeList = lists.find(list => list.id === activeListId);
+  lists.find(list => list.id === activeListId).tasks = activeList.tasks.filter(
+    task => task.done === false
+  );
+  saveAndRender(lists, activeListId, bindTaskButtons);
+}
+
 function bindToggleButtons() {
   const toggleButtonEls = document.querySelectorAll('[data-toggle]');
   toggleButtonEls.forEach((button: HTMLButtonElement, index: number) => {
@@ -59,9 +67,19 @@ function bindDeleteButtons() {
   });
 }
 
+function bindClearCompletedTasks() {
+  const clearCompletedButtonEl: HTMLButtonElement = document.querySelector(
+    '[data-clear-completed]'
+  );
+  clearCompletedButtonEl.addEventListener('click', () => {
+    clearCompletedTasks();
+  });
+}
+
 function bindTaskButtons() {
   bindToggleButtons();
   bindDeleteButtons();
+  bindClearCompletedTasks();
 }
 
 function init() {
