@@ -140,7 +140,12 @@
 
   &__buttons {
     display: flex;
+    gap: $space-sm;
     justify-content: space-evenly;
+
+    @media (max-width: $breakpoint-xs) {
+      flex-direction: column;
+    }
   }
 
   &__button {
