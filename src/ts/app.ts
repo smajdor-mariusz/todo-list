@@ -42,11 +42,26 @@ function deleteTask(index: number) {
 }
 
 function clearCompletedTasks() {
-  const activeList = lists.find(list => list.id === activeListId);
-  lists.find(list => list.id === activeListId).tasks = activeList.tasks.filter(
-    task => task.done === false
+  const clearCompletedButtonEl: HTMLButtonElement = document.querySelector(
+    '[data-clear-completed]'
   );
-  saveAndRender(lists, activeListId, bindTaskButtons);
+  clearCompletedButtonEl.addEventListener('click', () => {
+    const activeList = lists.find(list => list.id === activeListId);
+    lists.find(list => list.id === activeListId).tasks =
+      activeList.tasks.filter(task => task.done === false);
+
+    saveAndRender(lists, activeListId, bindTaskButtons);
+  });
+}
+
+function deleteList() {
+  const deleteListBtnEl: HTMLButtonElement =
+    document.querySelector('[data-delete-list]');
+  deleteListBtnEl.addEventListener('click', () => {
+    lists = lists.filter(list => list.id !== activeListId);
+    activeListId = null;
+    saveAndRender(lists, activeListId, bindTaskButtons);
+  });
 }
 
 function bindToggleButtons() {
@@ -67,19 +82,9 @@ function bindDeleteButtons() {
   });
 }
 
-function bindClearCompletedTasks() {
-  const clearCompletedButtonEl: HTMLButtonElement = document.querySelector(
-    '[data-clear-completed]'
-  );
-  clearCompletedButtonEl.addEventListener('click', () => {
-    clearCompletedTasks();
-  });
-}
-
 function bindTaskButtons() {
   bindToggleButtons();
   bindDeleteButtons();
-  bindClearCompletedTasks();
 }
 
 function init() {
@@ -92,6 +97,8 @@ function init() {
 
   bindForm('list', addNewList);
   bindForm('task', addNewTask);
+  clearCompletedTasks();
+  deleteList();
   saveAndRender(lists, activeListId, bindTaskButtons);
 }
 

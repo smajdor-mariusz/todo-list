@@ -43,17 +43,21 @@ export function createTaskItemEl(task: Task) {
 
 export function setTasksBlock(activeList: List) {
   setTasksContainer(activeList);
-  setTasksInfo(activeList);
+  activeList && setTasksInfo(activeList);
 }
 
 function setTasksContainer(activeList: List) {
   const tasksContainerEl: HTMLDivElement = document.querySelector(
     '[data-tasks-container]'
   );
-  tasksContainerEl.classList.remove('tasks--hidden');
-  const tasksTitleEl: HTMLHeadElement =
-    document.querySelector('[data-tasks-title]');
-  tasksTitleEl.innerText = activeList.name;
+  if (activeList) {
+    tasksContainerEl.classList.remove('tasks--hidden');
+    const tasksTitleEl: HTMLHeadElement =
+      document.querySelector('[data-tasks-title]');
+    tasksTitleEl.innerText = activeList.name;
+  } else {
+    tasksContainerEl.classList.add('tasks--hidden');
+  }
 }
 
 function setTasksInfo(activeList: List) {

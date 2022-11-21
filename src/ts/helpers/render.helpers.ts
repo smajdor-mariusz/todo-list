@@ -9,19 +9,16 @@ import { saveInLocalStorage } from './local-storage.helper.js';
 export function saveAndRender(
   lists: List[],
   activeListId: string,
-  bindToggleButtons: Function
+  bindTaskButtons: Function
 ) {
-  render(lists, activeListId, bindToggleButtons);
+  render(lists, activeListId);
   saveInLocalStorage(lists, activeListId);
+  bindTaskButtons();
 }
 
-function render(
-  lists: List[],
-  activeListId: string,
-  bindToggleButtons: Function
-) {
+function render(lists: List[], activeListId: string) {
   renderList(lists, activeListId);
-  activeListId && renderTask(lists, activeListId, bindToggleButtons);
+  renderTask(lists, activeListId);
 }
 
 function renderList(lists: List[], activeListId: string) {
@@ -33,16 +30,15 @@ function renderList(lists: List[], activeListId: string) {
   });
 }
 
-function renderTask(
-  lists: List[],
-  activeListId: string,
-  bindToggleButtons: Function
-) {
-  const tasksEl: HTMLUListElement = document.querySelector('[data-tasks]');
-  tasksEl.innerHTML = null;
-
+function renderTask(lists: List[], activeListId: string) {
   const activeList: List = lists.find(list => list.id === activeListId);
-  activeList.tasks.forEach(task => tasksEl.appendChild(createTaskItemEl(task)));
+  if (activeListId) {
+    const tasksEl: HTMLUListElement = document.querySelector('[data-tasks]');
+    tasksEl.innerHTML = null;
+
+    activeList.tasks.forEach(task =>
+      tasksEl.appendChild(createTaskItemEl(task))
+    );
+  }
   setTasksBlock(activeList);
-  bindToggleButtons();
 }
