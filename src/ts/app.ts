@@ -3,20 +3,10 @@ import { saveAndRender } from './helpers/render.helpers.js';
 import { createNewItem } from './utils/createNewItem.js';
 import { bindForm } from './utils/bindForm.js';
 import { ACTIVE_LIST_KEY, LISTS_KEY } from './helpers/local-storage.helper.js';
+import { addNewList } from './helpers/task.helpers';
 
 let lists: List[] = JSON.parse(localStorage.getItem(LISTS_KEY)) || [];
 let activeListId: string = JSON.parse(localStorage.getItem(ACTIVE_LIST_KEY));
-
-function addNewList() {
-  const newListName: string = createNewItem('[data-list-input]');
-  if (!newListName) return;
-  lists.push({
-    id: Date.now().toString(),
-    name: newListName,
-    tasks: [],
-  });
-  saveAndRender(lists, activeListId, bindTaskEvents);
-}
 
 function addNewTask() {
   const newTaskName: string = createNewItem('[data-task-input]');
