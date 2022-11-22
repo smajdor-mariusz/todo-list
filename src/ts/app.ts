@@ -15,7 +15,7 @@ function addNewList() {
     name: newListName,
     tasks: [],
   });
-  saveAndRender(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskEvents);
 }
 
 function addNewTask() {
@@ -26,19 +26,19 @@ function addNewTask() {
     name: newTaskName,
     done: false,
   });
-  saveAndRender(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskEvents);
 }
 
 function toggleTaskDone(index: string) {
   const activeList = lists.find(list => list.id === activeListId);
   activeList.tasks[index].done = !activeList.tasks[index].done;
-  saveAndRender(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskEvents);
 }
 
 function deleteTask(index: number) {
   const activeList = lists.find(list => list.id === activeListId);
   activeList.tasks.splice(index, 1);
-  saveAndRender(lists, activeListId, bindTaskButtons);
+  saveAndRender(lists, activeListId, bindTaskEvents);
 }
 
 function clearCompletedTasks() {
@@ -50,7 +50,7 @@ function clearCompletedTasks() {
     lists.find(list => list.id === activeListId).tasks =
       activeList.tasks.filter(task => task.done === false);
 
-    saveAndRender(lists, activeListId, bindTaskButtons);
+    saveAndRender(lists, activeListId, bindTaskEvents);
   });
 }
 
@@ -60,7 +60,7 @@ function deleteList() {
   deleteListBtnEl.addEventListener('click', () => {
     lists = lists.filter(list => list.id !== activeListId);
     activeListId = null;
-    saveAndRender(lists, activeListId, bindTaskButtons);
+    saveAndRender(lists, activeListId, bindTaskEvents);
   });
 }
 
@@ -82,9 +82,14 @@ function bindDeleteButtons() {
   });
 }
 
-function bindTaskButtons() {
+function bindTaskEvents() {
   bindToggleButtons();
   bindDeleteButtons();
+}
+
+function bindListEvents() {
+  clearCompletedTasks();
+  deleteList();
 }
 
 function init() {
@@ -92,14 +97,13 @@ function init() {
   listsEl.addEventListener('click', (event: Event) => {
     const targetEl = event.target as HTMLLIElement;
     activeListId = targetEl.getAttribute('data-list-item');
-    saveAndRender(lists, activeListId, bindTaskButtons);
+    saveAndRender(lists, activeListId, bindTaskEvents);
   });
 
   bindForm('list', addNewList);
   bindForm('task', addNewTask);
-  clearCompletedTasks();
-  deleteList();
-  saveAndRender(lists, activeListId, bindTaskButtons);
+  bindListEvents();
+  saveAndRender(lists, activeListId, bindTaskEvents);
 }
 
 init();
