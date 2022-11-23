@@ -6,6 +6,5 @@ export function saveInLocalStorage() {
   localStorage.setItem(ACTIVE_LIST_KEY, JSON.stringify(activeListId));
 }
 
-export function loadFromLocalStorage(key: string) {
-  return JSON.parse(localStorage.getItem(key));
-}
+export const loadFromLocalStorage = (key: string) =>
+  JSON.parse(localStorage.getItem(key));
