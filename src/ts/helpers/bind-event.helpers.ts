@@ -1,5 +1,3 @@
-import { activeListId, lists } from '../app';
-import { List } from '../types';
 import {
   clearCompletedTasks,
   deleteList,
