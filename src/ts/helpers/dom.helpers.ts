@@ -1,6 +1,7 @@
+import { activeListId } from '../app';
 import { List, Task } from '../types';
 
-export function createListItemEl(list: List, activeListId: string) {
+export function createListItemEl(list: List) {
   const listItemEl: HTMLLIElement = document.createElement('li');
   listItemEl.setAttribute('data-list-item', list.id);
   listItemEl.classList.add('lists__item');

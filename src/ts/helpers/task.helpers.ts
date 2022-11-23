@@ -1,8 +1,8 @@
-import { List } from '../types';
+import { activeListId, lists, setActiveListId } from '../app';
 import { createNewItem } from '../utils/createNewItem';
 import { saveAndRender } from './render.helpers';
 
-export function addNewTask(lists: List[], activeListId: string) {
+export function addNewTask() {
   const newTaskName: string = createNewItem('[data-task-input]');
   if (!newTaskName) return;
   const activeList = lists.find(list => list.id === activeListId);
@@ -10,26 +10,22 @@ export function addNewTask(lists: List[], activeListId: string) {
     name: newTaskName,
     done: false,
   });
-  saveAndRender(lists, activeListId);
+  saveAndRender();
 }
 
-export function toggleTaskDone(
-  index: string,
-  lists: List[],
-  activeListId: string
-) {
+export function toggleTaskDone(index: number) {
   const activeList = lists.find(list => list.id === activeListId);
   activeList.tasks[index].done = !activeList.tasks[index].done;
-  saveAndRender(lists, activeListId);
+  saveAndRender();
 }
 
-export function deleteTask(index: number, lists: List[], activeListId: string) {
+export function deleteTask(index: number) {
   const activeList = lists.find(list => list.id === activeListId);
   activeList.tasks.splice(index, 1);
-  saveAndRender(lists, activeListId);
+  saveAndRender();
 }
 
-export function addNewList(lists: List[], activeListId: string) {
+export function addNewList() {
   const newListName: string = createNewItem('[data-list-input]');
   if (!newListName) return;
   lists.push({
@@ -37,19 +33,19 @@ export function addNewList(lists: List[], activeListId: string) {
     name: newListName,
     tasks: [],
   });
-  saveAndRender(lists, activeListId);
+  saveAndRender();
 }
 
-export function deleteList(lists: List[], activeListId: string) {
-  lists = lists.filter(list => list.id !== activeListId);
-  activeListId = null;
-  saveAndRender(lists, activeListId);
+export function deleteList() {
+  lists.filter(list => list.id !== activeListId);
+  setActiveListId(null);
+  saveAndRender();
 }
 
-export function clearCompletedTasks(lists: List[], activeListId: string) {
+export function clearCompletedTasks() {
   const activeList = lists.find(list => list.id === activeListId);
   lists.find(list => list.id === activeListId).tasks = activeList.tasks.filter(
     task => task.done === false
   );
-  saveAndRender(lists, activeListId);
+  saveAndRender();
 }

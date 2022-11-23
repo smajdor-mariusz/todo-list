@@ -1,3 +1,4 @@
+import { lists, activeListId } from '../app';
 import { List } from '../types';
 import { saveInLocalStorage } from './local-storage.helper.js';
 import { bindTaskEvents } from './bind-event.helpers';
@@ -7,26 +8,26 @@ import {
   setTasksBlock,
 } from './dom.helpers.js';
 
-export function saveAndRender(lists: List[], activeListId: string) {
-  render(lists, activeListId);
-  saveInLocalStorage(lists, activeListId);
+export function saveAndRender() {
+  render();
+  saveInLocalStorage();
 }
 
-function render(lists: List[], activeListId: string) {
-  renderList(lists, activeListId);
-  renderTask(lists, activeListId);
+function render() {
+  renderList();
+  renderTask();
 }
 
-function renderList(lists: List[], activeListId: string) {
+function renderList() {
   const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
   listsEl.innerHTML = null;
 
   lists.forEach((list: List) => {
-    listsEl.appendChild(createListItemEl(list, activeListId));
+    listsEl.appendChild(createListItemEl(list));
   });
 }
 
-function renderTask(lists: List[], activeListId: string) {
+function renderTask() {
   const activeList: List = lists.find(list => list.id === activeListId);
   if (activeListId) {
     const tasksEl: HTMLUListElement = document.querySelector('[data-tasks]');
@@ -37,5 +38,5 @@ function renderTask(lists: List[], activeListId: string) {
     );
   }
   setTasksBlock(activeList);
-  bindTaskEvents(lists, activeListId);
+  bindTaskEvents();
 }

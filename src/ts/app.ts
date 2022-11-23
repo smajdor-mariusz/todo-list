@@ -5,21 +5,25 @@ import { ACTIVE_LIST_KEY, LISTS_KEY } from './helpers/local-storage.helper.js';
 import { addNewList, addNewTask } from './helpers/task.helpers';
 import { bindListEvents } from './helpers/bind-event.helpers';
 
-let lists: List[] = JSON.parse(localStorage.getItem(LISTS_KEY)) || [];
-let activeListId: string = JSON.parse(localStorage.getItem(ACTIVE_LIST_KEY));
+export let lists: List[] = JSON.parse(localStorage.getItem(LISTS_KEY)) || [];
+export let activeListId: string = JSON.parse(
+  localStorage.getItem(ACTIVE_LIST_KEY)
+);
+
+export const setActiveListId = (value: string) => (activeListId = value);
 
 function init() {
   const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
   listsEl.addEventListener('click', (event: Event) => {
     const targetEl = event.target as HTMLLIElement;
     activeListId = targetEl.getAttribute('data-list-item');
-    saveAndRender(lists, activeListId);
+    saveAndRender();
   });
 
   bindForm('list', addNewList);
   bindForm('task', addNewTask);
-  bindListEvents(lists, activeListId);
-  saveAndRender(lists, activeListId);
+  bindListEvents();
+  saveAndRender();
 }
 
 init();

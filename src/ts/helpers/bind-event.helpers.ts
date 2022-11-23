@@ -1,52 +1,53 @@
+import { activeListId, lists } from '../app';
+import { List } from '../types';
 import {
   clearCompletedTasks,
   deleteList,
   deleteTask,
   toggleTaskDone,
 } from '../helpers/task.helpers';
-import { List } from '../types';
 
-export function bindTaskEvents(list: List[], activeListId: string) {
-  bindToggleButtons(list, activeListId);
-  bindDeleteButtons(list, activeListId);
+export function bindTaskEvents() {
+  bindToggleButtons();
+  bindDeleteButtons();
 }
 
-export function bindListEvents(lists: List[], activeListId: string) {
-  bindClearCompletedTasksButton(lists, activeListId);
-  bindDeleteListButton(lists, activeListId);
+export function bindListEvents() {
+  bindClearCompletedTasksButton();
+  bindDeleteListButton();
 }
 
-function bindClearCompletedTasksButton(lists: List[], activeListId: string) {
+function bindClearCompletedTasksButton() {
   const clearCompletedButtonEl: HTMLButtonElement = document.querySelector(
     '[data-clear-completed]'
   );
   clearCompletedButtonEl.addEventListener('click', () => {
-    clearCompletedTasks(lists, activeListId);
+    clearCompletedTasks();
   });
 }
 
-function bindDeleteListButton(lists: List[], activeListId: string) {
+function bindDeleteListButton() {
   const deleteListBtnEl: HTMLButtonElement =
     document.querySelector('[data-delete-list]');
   deleteListBtnEl.addEventListener('click', () => {
-    deleteList(lists, activeListId);
+    deleteList();
   });
 }
 
-function bindToggleButtons(lists: List[], activeListId: string) {
+function bindToggleButtons() {
   const toggleButtonEls = document.querySelectorAll('[data-toggle]');
   toggleButtonEls.forEach((button: HTMLButtonElement, index: number) => {
     button.addEventListener('click', () => {
-      toggleTaskDone(index.toString(), lists, activeListId);
+      toggleTaskDone(index);
     });
   });
 }
 
-function bindDeleteButtons(lists: List[], activeListId: string) {
+function bindDeleteButtons() {
   const deleteButtonsEls = document.querySelectorAll('[data-delete]');
   deleteButtonsEls.forEach((button: HTMLButtonElement, index: number) => {
     button.addEventListener('click', () => {
-      deleteTask(index, lists, activeListId);
+      deleteTask(index);
     });
   });
 }
