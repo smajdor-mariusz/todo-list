@@ -1,6 +1,6 @@
 import { lists, activeListId } from '../app';
 import { List } from '../types';
-import { saveInLocalStorage } from './local-storage.helper.js';
+import { saveInLocalStorage } from './local-storage.helpers.js';
 import { bindTaskEvents } from './bind-event.helpers';
 import {
   createListItemEl,
