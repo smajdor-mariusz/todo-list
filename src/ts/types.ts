@@ -4,7 +4,7 @@ export interface List {
   tasks: Task[];
 }
 
-export interface Task {
+interface Task {
   name: string;
   done: boolean;
 }
