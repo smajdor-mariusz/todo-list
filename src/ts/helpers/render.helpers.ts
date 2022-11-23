@@ -1,19 +1,15 @@
 import { List } from '../types';
+import { saveInLocalStorage } from './local-storage.helper.js';
+import { bindTaskEvents } from './bind-event.helpers';
 import {
   createListItemEl,
   createTaskItemEl,
   setTasksBlock,
 } from './dom.helpers.js';
-import { saveInLocalStorage } from './local-storage.helper.js';
 
-export function saveAndRender(
-  lists: List[],
-  activeListId: string,
-  bindTaskButtons: Function
-) {
+export function saveAndRender(lists: List[], activeListId: string) {
   render(lists, activeListId);
   saveInLocalStorage(lists, activeListId);
-  bindTaskButtons();
 }
 
 function render(lists: List[], activeListId: string) {
@@ -41,4 +37,5 @@ function renderTask(lists: List[], activeListId: string) {
     );
   }
   setTasksBlock(activeList);
+  bindTaskEvents(lists, activeListId);
 }
