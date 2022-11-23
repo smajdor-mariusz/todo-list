@@ -14,8 +14,8 @@ export const setActiveListId = (value: string) => (activeListId = value);
 
 function init() {
   const listsEl: HTMLUListElement = document.querySelector('[data-lists]');
-  listsEl.addEventListener('click', (event: Event) => {
-    const targetEl = event.target as HTMLLIElement;
+  listsEl.addEventListener('click', e => {
+    const targetEl = e.target as HTMLLIElement;
     activeListId = targetEl.getAttribute('data-list-item');
     saveAndRender();
   });
