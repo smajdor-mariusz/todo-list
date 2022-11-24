@@ -3,7 +3,7 @@ import {
   deleteList,
   deleteTask,
   toggleTaskDone,
-} from '../helpers/task.helpers';
+} from '../helpers/task.helpers.js';
 
 export function bindTaskEvents() {
   bindToggleButtons();

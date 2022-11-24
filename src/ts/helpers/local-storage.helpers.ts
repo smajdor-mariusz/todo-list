@@ -1,5 +1,5 @@
-import { lists, activeListId } from '../app';
-import { ACTIVE_LIST_KEY, LISTS_KEY } from '../constants';
+import { lists, activeListId } from '../app.js';
+import { ACTIVE_LIST_KEY, LISTS_KEY } from '../constants.js';
 
 export function saveInLocalStorage() {
   localStorage.setItem(LISTS_KEY, JSON.stringify(lists));

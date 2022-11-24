@@ -1,6 +1,6 @@
-import { activeListId, lists, setActiveListId } from '../app';
-import { createNewItem } from '../utils/createNewItem';
-import { saveAndRender } from './render.helpers';
+import { activeListId, lists, setActiveListId } from '../app.js';
+import { createNewItem } from '../utils/createNewItem.js';
+import { saveAndRender } from './render.helpers.js';
 
 export function addNewTask() {
   const newTaskName: string = createNewItem('[data-task-input]');

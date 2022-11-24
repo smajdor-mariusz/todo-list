@@ -1,4 +1,4 @@
-import { activeListId } from '../app';
+import { activeListId } from '../app.js';
 import { List, Task } from '../types';
 
 export function createListItemEl(list: List) {

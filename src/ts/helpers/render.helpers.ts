@@ -1,7 +1,7 @@
-import { lists, activeListId } from '../app';
+import { lists, activeListId } from '../app.js';
 import { List } from '../types';
 import { saveInLocalStorage } from './local-storage.helpers.js';
-import { bindTaskEvents } from './bind-event.helpers';
+import { bindTaskEvents } from './bind-event.helpers.js';
 import {
   createListItemEl,
   createTaskItemEl,
