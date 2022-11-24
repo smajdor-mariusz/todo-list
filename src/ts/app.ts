@@ -6,7 +6,7 @@ import { loadFromLocalStorage } from './helpers/local-storage.helpers.js';
 import { addNewList, addNewTask } from './helpers/task.helpers.js';
 import { bindListEvents } from './helpers/bind-event.helpers.js';
 
-export let lists: List[] = loadFromLocalStorage(LISTS_KEY) || [];
+export const lists: List[] = loadFromLocalStorage(LISTS_KEY) || [];
 export let activeListId: string = loadFromLocalStorage(ACTIVE_LIST_KEY);
 
 export const setActiveListId = (value: string) => (activeListId = value);
