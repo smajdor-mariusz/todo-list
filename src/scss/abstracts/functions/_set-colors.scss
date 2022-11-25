@@ -1,0 +1,9 @@
+@use '../variables/colors' as *;
+
+@function set-colors($background) {
+  @if ($background == $clr-primary) {
+    @return $clr-light;
+  } @else {
+    @return $clr-dark;
+  }
+}
