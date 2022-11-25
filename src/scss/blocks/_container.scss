@@ -1,4 +1,4 @@
-@use '../abstracts/index' as *;
+@use '../abstracts/variables/index' as *;
 
 .container {
   $element-width: minmax(auto, 400px);
