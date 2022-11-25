@@ -1,11 +1,11 @@
 @use '../variables/index' as *;
 @use '../functions/set-colors' as *;
 
-@mixin set-form($color) {
+@mixin set-form($color, $padding) {
   &__form {
     display: flex;
     gap: $space-sm;
-    padding: 0 $space-md $space-md;
+    padding: 0 $padding $padding;
   }
 
   &__input {

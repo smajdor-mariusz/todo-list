@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: $space-md;
 
-  @include set-form($clr-light);
+  @include set-form($clr-light, $space-md);
 
   &--hidden {
     display: none;

@@ -7,7 +7,7 @@
   gap: $space-lg;
   color: $clr-light;
 
-  @include set-form($clr-primary);
+  @include set-form($clr-primary, 0);
 
   &__title {
     margin: $space-md 0;
