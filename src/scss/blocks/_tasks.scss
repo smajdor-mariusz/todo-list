@@ -1,9 +1,12 @@
 @use '../abstracts/variables/index' as *;
+@use '../abstracts/mixin/form' as *;
 
 .tasks {
   display: flex;
   flex-direction: column;
   gap: $space-md;
+
+  @include set-form($clr-light);
 
   &--hidden {
     display: none;
@@ -102,40 +105,6 @@
     &:active {
       filter: brightness(80%);
     }
-  }
-
-  &__form {
-    display: flex;
-    gap: $space-sm;
-    padding: 0 $space-md $space-md;
-  }
-
-  &__input {
-    border: unset;
-    border-bottom: 1px solid $clr-dark;
-    padding: $space-xs 0;
-    background-color: transparent;
-    color: $clr-dark;
-    outline: unset;
-    transition: box-shadow $transition;
-
-    &:focus {
-      box-shadow: 0 1px 0 0 $clr-dark;
-    }
-
-    &::placeholder {
-      color: $clr-gray;
-    }
-  }
-
-  &__submit {
-    order: -1;
-    padding: 0;
-    border: unset;
-    background-color: transparent;
-    color: $clr-dark;
-    font-weight: bold;
-    transition: filter $transition;
   }
 
   &__buttons {
