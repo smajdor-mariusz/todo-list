@@ -37,7 +37,8 @@ export function addNewList() {
 }
 
 export function deleteList() {
-  lists.filter(list => list.id !== activeListId);
+  const activeListIndex = lists.findIndex(list => list.id === activeListId);
+  lists.splice(activeListIndex, 1);
   setActiveListId(null);
   saveAndRender();
 }
