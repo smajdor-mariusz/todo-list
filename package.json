@@ -2,9 +2,10 @@
   "name": "todo-list",
   "version": "1.0.0",
   "description": "Simple todo app made in html, typescrip and scss",
-  "main": "dist/app.js",
   "scripts": {
-    "compile": "tsc --watch"
+    "compile": "tsc --watch",
+    "deploy": "gh-pages -d dist",
+    "build": "cross-env NODE_ENV=production parcel build index.html --public-url ."
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,10 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/smajdor-mariusz/todo-list/issues"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "gh-pages": "^4.0.0",
+    "parcel": "^2.8.0"
   }
 }
