@@ -4,6 +4,10 @@
 
 Simple todo app made in html, typescript and scss to manage and categorize your tasks.
 
+## Demo
+
+https://smajdor-mariusz.github.io/todo-list/
+
 ## Dependencies
 
 1. typescript
