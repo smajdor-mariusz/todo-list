@@ -27,6 +27,7 @@ export function createTaskItemEl(task: Task) {
 
   const taskContentEl: HTMLSpanElement = document.createElement('span');
   taskContentEl.innerText = task.name;
+  taskContentEl.classList.add('tasks__content');
   if (task.done) taskContentEl.classList.add('tasks__content--done');
 
   const taskDeleteBtnEl: HTMLButtonElement = document.createElement('button');

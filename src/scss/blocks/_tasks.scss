@@ -56,11 +56,13 @@
     align-items: center;
 
     &:hover .tasks__delete {
-      display: block;
+      color: $clr-warning;
+      pointer-events: all;
     }
   }
 
   &__content {
+    word-break: break-all;
     &--done {
       text-decoration: line-through;
     }
@@ -90,12 +92,11 @@
   }
 
   &__delete {
-    display: none;
     border: unset;
     background-color: transparent;
-    color: $clr-warning;
+    color: transparent;
     font-size: $font-sm;
-
+    pointer-events: none;
     transition: filter $transition;
 
     &:hover {
